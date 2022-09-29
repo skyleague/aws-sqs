@@ -3,6 +3,10 @@ locals {
   has_dlq = try(var.dlq_settings.enabled, false)
 }
 
+moved {
+  from = aws_sqs_queue.queue
+  to   = aws_sqs_queue.this
+}
 resource "aws_sqs_queue" "this" {
   name                       = local.is_fifo
   name_prefix                = var.name_prefix
