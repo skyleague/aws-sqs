@@ -14,6 +14,7 @@ resource "aws_sqs_queue" "this" {
   max_message_size           = var.max_message_size
   delay_seconds              = var.delay_seconds
   receive_wait_time_seconds  = var.receive_wait_time_seconds
+  message_retention_seconds  = var.message_retention_seconds
   policy                     = var.policy
   tags                       = var.tags
 
@@ -77,6 +78,7 @@ resource "aws_sqs_queue" "dlq" {
   max_message_size           = var.max_message_size
   delay_seconds              = var.dlq_settings.delay_seconds
   receive_wait_time_seconds  = var.dlq_settings.receive_wait_time_seconds
+  message_retention_seconds  = var.dlq_settings.message_retention_seconds != null ? var.dlq_settings.message_retention_seconds : var.message_retention_seconds
   policy                     = var.dlq_settings.policy != null ? var.dlq_settings.policy : var.policy
   tags                       = var.tags
 

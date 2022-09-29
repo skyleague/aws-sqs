@@ -28,6 +28,12 @@ variable "delay_seconds" {
   default     = null
 }
 
+variable "message_retention_seconds" {
+  description = "How long messages will be retained when unprocessed."
+  type        = number
+  default     = 1209600
+}
+
 variable "receive_wait_time_seconds" {
   description = "Wait time before returning empty receives. This can be used to configure queue-level long polling."
   type        = number
@@ -78,6 +84,7 @@ variable "dlq_settings" {
     redrive_enabled   = optional(bool, true)
 
     visibility_timeout_seconds = optional(number)
+    message_retention_seconds  = optional(number)
     delay_seconds              = optional(number)
     receive_wait_time_seconds  = optional(number)
     policy                     = optional(string)
