@@ -64,6 +64,10 @@ resource "aws_sqs_queue_redrive_allow_policy" "this" {
 }
 
 
+moved {
+  from = aws_sqs_queue.dlq
+  to   = aws_sqs_queue.dlq[0]
+}
 resource "aws_sqs_queue" "dlq" {
   count = local.has_dlq ? 1 : 0
 
