@@ -64,7 +64,7 @@ variable "fifo_settings" {
     enabled                     = bool
     content_based_deduplication = optional(bool, true)
     deduplication_scope         = optional(string, "messageGroup")
-    throughput_limit            = optional(string, "perMessageGroup")
+    throughput_limit            = optional(string, "perMessageGroupId")
   })
   default = null
 }
