@@ -8,7 +8,7 @@ moved {
   to   = aws_sqs_queue.this
 }
 resource "aws_sqs_queue" "this" {
-  name                       = local.is_fifo
+  name                       = var.name != null ? (local.is_fifo && !endswith(var.name, ".fifo")) ? "${var.name}.fifo" : var.name : null
   name_prefix                = var.name_prefix
   visibility_timeout_seconds = var.visibility_timeout_seconds
   max_message_size           = var.max_message_size
