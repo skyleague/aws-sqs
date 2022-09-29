@@ -37,6 +37,7 @@ variable "receive_wait_time_seconds" {
 variable "policy" {
   description = "Resource policy for the SQS queue."
   type        = string
+  default     = null
 }
 
 variable "kms_master_key_id" {
