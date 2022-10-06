@@ -95,7 +95,7 @@ resource "aws_sqs_queue" "dlq" {
 }
 resource "aws_sqs_queue_redrive_allow_policy" "dlq" {
   count     = local.has_dlq ? 1 : 0
-  queue_url = aws_sqs_queue.dlq.url
+  queue_url = aws_sqs_queue.dlq[0].url
 
   # Redrive only works for non-fifo queues
   redrive_allow_policy = var.dlq_settings.redrive_enabled && !local.is_fifo ? jsonencode({
