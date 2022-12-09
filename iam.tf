@@ -28,6 +28,7 @@ data "aws_iam_policy_document" "subscribe" {
       "sqs:ReceiveMessage",
       "sqs:DeleteMessage",
       "sqs:GetQueueAttributes",
+      "sqs:GetQueueUrl",
       "sqs:ChangeMessageVisibility",
     ]
     resources = [aws_sqs_queue.this.arn]
@@ -54,6 +55,7 @@ data "aws_iam_policy_document" "subscribe_dlq" {
       "sqs:ReceiveMessage",
       "sqs:DeleteMessage",
       "sqs:GetQueueAttributes",
+      "sqs:GetQueueUrl",
       "sqs:ChangeMessageVisibility",
     ]
     resources = [aws_sqs_queue.dlq[count.index].arn]
